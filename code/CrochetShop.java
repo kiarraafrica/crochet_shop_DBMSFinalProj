@@ -3,7 +3,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -225,17 +224,18 @@ public class CrochetShop {
                 return;
             }
 
-            String query = "INSERT INTO orders (order_id, customer_id, username, product_id, name, price, quantity, total_price, date_time) VALUES (?, ?, ?, ?, ?, ?, ?, NOW())";
-            int orderID = generateOrderID(connection);
+            String query = "INSERT INTO orders (customer_id, username, product_id, product_type, name, price, quantity, total_price, date_time) VALUES (?, ?, ?, ?, ?, ?, ?, NOW())";
 
             for (ShoppingCart.CartItem item : shoppingCart.cartItems) {
                 double totalPrice = item.getPrice() * item.getQuantity();
 
+                String productType = determineProductType(item.getProductID(), connection);
+
                 try (PreparedStatement stmt = connection.prepareStatement(query)) {
-                    stmt.setInt(1, orderID);
-                    stmt.setString(2, customerID);
-                    stmt.setString(3, username); 
-                    stmt.setString(4, item.getProductID());
+                    stmt.setString(1, customerID);
+                    stmt.setString(2, username); 
+                    stmt.setString(3, item.getProductID());
+                    stmt.setString(4, productType);
                     stmt.setString(5, item.getName());   
                     stmt.setDouble(6, item.getPrice()); 
                     stmt.setInt(7, item.getQuantity());
@@ -251,19 +251,24 @@ public class CrochetShop {
         }
     }
 
-    private int generateOrderID(Connection connection) {
-        try (Statement stmt = connection.createStatement()) {
-            String query = "SELECT MAX(order_id) FROM orders";
-            ResultSet rs = stmt.executeQuery(query);
+    private String determineProductType(String productID, Connection connection) {
+        try (PreparedStatement stmt = connection.prepareStatement(
+            "SELECT 'tool' AS type FROM crochet_tools WHERE product_id = ? UNION ALL "
+          + "SELECT 'yarn' AS type FROM yarns WHERE product_id = ? UNION ALL "
+          + "SELECT 'item' AS type FROM crocheted_items WHERE product_id = ?")) {
+            stmt.setString(1, productID);
+            stmt.setString(2, productID);
+            stmt.setString(3, productID);
+            ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
-                return rs.getInt(1) + 1;
+                return rs.getString("type");
             }
+        } catch (SQLException e) {
+            System.out.println("Error determining product type: " + e.getMessage());
         }
-        catch (SQLException e) {
-            System.out.println("Error generating order ID: " + e.getMessage());
-        }
-        return 1;
+        return null;
     }
+    
 
     private void walletMenu() {
         boolean back = false;
