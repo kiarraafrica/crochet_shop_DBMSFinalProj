@@ -9,15 +9,15 @@
 *The Crochet Shop is a simple system built to manage a crochet-related online store. It allows users to sign up, log in, and browse a catalog of products, including crochet tools, yarns, and crocheted items. Admin can manage products, update stock, and view product details.*
 
 ## Tables
-1. users
+1. 👤users
     - stores information about the registered users in the system
-2. yarns
+2. 🧶yarns
     - stores information about yarn products available in the shop
-3. crochet_tools
+3. 🛠️crochet_tools
     - stores information about crochet tools available in the shop
-4. crocheted_items
+4. 🧵crocheted_items
     - stores information about crocheted items available in the shop
-5. orders
+5. 📝orders
     - stores details about user orders
 
 ## Instruction for Running the Program
