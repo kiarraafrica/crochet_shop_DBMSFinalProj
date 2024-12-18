@@ -6,6 +6,7 @@ USE FinalProj_DBMS;
 CREATE TABLE users (
     customer_id CHAR(3) PRIMARY KEY,
     username VARCHAR(20) UNIQUE NOT NULL,
+    password VARCHAR(30) NOT NULL,
     email VARCHAR(50) NOT NULL,
     address TEXT,
     phone_number VARCHAR(11)
