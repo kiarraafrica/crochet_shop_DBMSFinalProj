@@ -4,6 +4,7 @@
     📍Overview of the Project
     📍Tables
     📍Instructions for Running the Program
+    📍About the Developer
 
 ## Overview of the Project
 *The Crochet Shop is a simple system built to manage a crochet-related online store. It allows users to sign up, log in, and browse a catalog of products, including crochet tools, yarns, and crocheted items. Admin can manage products, update stock, and view product details.*
@@ -39,3 +40,11 @@
         - 🧶Crochet Tools: View and browse a variety of crochet tools
         - 🧶Crocheted Items: Browse finished crocheted items that are available for purchase
 3. Log out
+
+## About the Developer
+- Kiarra Francesca Gabrielle S. Africa
+
+- COURSE:
+    - IT 211 (Database Management System)
+- COURSE FACILITATOR:
+    - Sir Owen Patrick Falculan
