@@ -31,14 +31,14 @@
         - ➕Add to Cart: Add products from catalog to your shopping cart
         - 🗑️Remove from Cart: Remove any product from the cart
         - 💳Checkout: Whem you're ready to purchase, proceed to checkou
-    - Wallet
-        - 💵View Balance: Check your current wallet balance
-        - 💰Deposit: Add funds to your wallet
-        - 💸Withdraw: Deduct funds from your balance
     - Product Catalog
         - 🧶Yarns: View different types of yarns available
         - 🧶Crochet Tools: View and browse a variety of crochet tools
         - 🧶Crocheted Items: Browse finished crocheted items that are available for purchase
+    - Wallet
+        - 💵View Balance: Check your current wallet balance
+        - 💰Deposit: Add funds to your wallet
+        - 💸Withdraw: Deduct funds from your balance
 3. Log out
 
 ## About the Developer
